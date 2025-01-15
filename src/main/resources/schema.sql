@@ -14,7 +14,7 @@ create table if not exists comments(
 
 create table if not exists tags(
     id bigserial primary key,
-    title varchar not null
+    title varchar unique not null
 );
 
 create table if not exists post_tags (
