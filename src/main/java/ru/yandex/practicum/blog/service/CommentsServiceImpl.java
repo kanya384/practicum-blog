@@ -14,21 +14,23 @@ public class CommentsServiceImpl implements CommentsService {
     private final CommentRepository commentRepository;
 
     @Override
-    public void save(CreateCommentDTO data) {
+    public Comment save(CreateCommentDTO data) {
         Comment comment = new Comment(data.getPostId(), data.getContent());
-        commentRepository.save(comment);
+        return commentRepository.save(comment);
     }
 
     @Override
-    public void update(Long id, EditCommentDTO data) {
+    public Comment update(Long id, EditCommentDTO data) {
         Comment comment = commentRepository.findCommentById(id)
                 .orElseThrow(() -> new InternalServerException("no comment with id = " + id));
         comment.setContent(data.getContent());
         commentRepository.update(comment);
+
+        return comment;
     }
 
     @Override
-    public void deleteComment(Long commentId) {
+    public void delete(Long commentId) {
         commentRepository.deleteById(commentId);
     }
 }

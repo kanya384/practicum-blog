@@ -31,18 +31,22 @@ public class JdbcNativeCommentRepository extends JdbcBaseRepository<Comment> imp
     }
 
     @Override
-    public void save(Comment comment) {
+    public Comment save(Comment comment) {
         long id = insert("insert into comments(post_id, content) values (?, ?)",
                 comment.getPostId(), comment.getContent()
         );
 
         comment.setId(id);
+
+        return comment;
     }
 
     @Override
-    public void update(Comment comment) {
+    public Comment update(Comment comment) {
         update("update comments set content = ? where id = ?",
                 comment.getContent(), comment.getId());
+
+        return comment;
     }
 
     @Override

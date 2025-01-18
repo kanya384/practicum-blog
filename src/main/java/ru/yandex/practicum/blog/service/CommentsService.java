@@ -2,11 +2,12 @@ package ru.yandex.practicum.blog.service;
 
 import ru.yandex.practicum.blog.dto.comment.CreateCommentDTO;
 import ru.yandex.practicum.blog.dto.comment.EditCommentDTO;
+import ru.yandex.practicum.blog.model.Comment;
 
 public interface CommentsService {
-    void save(CreateCommentDTO data);
+    Comment save(CreateCommentDTO data);
 
-    void update(Long id, EditCommentDTO data);
+    Comment update(Long id, EditCommentDTO data);
 
-    void deleteComment(Long commentId);
+    void delete(Long commentId);
 }

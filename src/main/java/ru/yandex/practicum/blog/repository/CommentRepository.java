@@ -12,9 +12,9 @@ public interface CommentRepository {
 
     Integer commentsOfPostCount(Long postId);
 
-    void save(Comment comment);
+    Comment save(Comment comment);
 
-    void update(Comment comment);
+    Comment update(Comment comment);
 
     void deleteById(Long commentId);
 }
