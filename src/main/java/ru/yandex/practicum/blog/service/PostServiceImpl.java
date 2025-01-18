@@ -10,7 +10,6 @@ import ru.yandex.practicum.blog.dto.post.PostsPageDto;
 import ru.yandex.practicum.blog.exception.InternalServerException;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.model.Post;
-import ru.yandex.practicum.blog.repository.CommentRepository;
 import ru.yandex.practicum.blog.repository.PostRepository;
 import ru.yandex.practicum.blog.utils.StorageUtil;
 
@@ -21,7 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
-    private final CommentRepository commentRepository;
+    private final CommentsService commentsService;
     private final TagService tagService;
     private final StorageUtil storageUtil;
 
@@ -53,7 +52,7 @@ public class PostServiceImpl implements PostService {
 
         Post post = maybePost.get();
 
-        List<Comment> comments = commentRepository.commentsOfPost(post.getId());
+        List<Comment> comments = commentsService.readCommentsOfPost(post.getId());
 
         return Optional.of(PostDetailedDTO.builder()
                 .id(post.getId())

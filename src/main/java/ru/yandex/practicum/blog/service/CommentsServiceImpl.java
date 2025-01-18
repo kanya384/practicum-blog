@@ -8,6 +8,8 @@ import ru.yandex.practicum.blog.exception.InternalServerException;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.repository.CommentRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CommentsServiceImpl implements CommentsService {
@@ -27,6 +29,11 @@ public class CommentsServiceImpl implements CommentsService {
         commentRepository.update(comment);
 
         return comment;
+    }
+
+    @Override
+    public List<Comment> readCommentsOfPost(Long postId) {
+        return commentRepository.commentsOfPost(postId);
     }
 
     @Override

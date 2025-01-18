@@ -13,6 +13,7 @@ import ru.yandex.practicum.blog.dto.comment.EditCommentDTO;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.repository.CommentRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,6 +61,15 @@ public class CommentsServiceTest {
         assertEquals(1L, comment.getId());
         assertEquals(1L, comment.getPostId());
         assertEquals("test - 2", comment.getContent());
+    }
+
+    @Test
+    void readCommentsOfPost_shouldReturnComments() {
+        when(commentRepository.commentsOfPost(1L))
+                .thenReturn(List.of(new Comment(1L, "test - 1"), new Comment(2L, "test - 2")));
+
+        List<Comment> comments = commentsService.readCommentsOfPost(1L);
+        assertEquals(2, comments.size());
     }
 
     @Test
