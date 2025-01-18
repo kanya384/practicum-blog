@@ -10,10 +10,8 @@ import ru.yandex.practicum.blog.dto.post.PostsPageDto;
 import ru.yandex.practicum.blog.exception.InternalServerException;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.model.Post;
-import ru.yandex.practicum.blog.model.Tag;
 import ru.yandex.practicum.blog.repository.CommentRepository;
 import ru.yandex.practicum.blog.repository.PostRepository;
-import ru.yandex.practicum.blog.repository.TagRepository;
 import ru.yandex.practicum.blog.utils.StorageUtil;
 
 import java.util.List;
@@ -24,7 +22,7 @@ import java.util.Optional;
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
-    private final TagRepository tagRepository;
+    private final TagService tagService;
     private final StorageUtil storageUtil;
 
     public PostsPageDto readPosts(String search, int page, int limit) {
@@ -75,18 +73,7 @@ public class PostServiceImpl implements PostService {
         Post post = new Post(data.getTitle(), imageFileName, data.getContent().replaceAll("\n", "<br />"));
         postRepository.save(post);
 
-        for (String tagTitle : data.getTags()) {
-            Optional<Tag> maybeTag = tagRepository.findTagByTitle(tagTitle);
-            if (maybeTag.isPresent()) {
-                tagRepository.linkTagToPost(maybeTag.get().getId(), post.getId());
-                continue;
-            }
-
-            Tag tag = new Tag(tagTitle);
-
-            tagRepository.save(tag);
-            tagRepository.linkTagToPost(tag.getId(), post.getId());
-        }
+        tagService.addTagsToPost(post.getId(), data.getTags());
     }
 
     @Transactional
@@ -95,7 +82,7 @@ public class PostServiceImpl implements PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new InternalServerException("no post with id = " + id));
 
-        tagRepository.unlinkAllTagsFromPost(post.getId());
+        tagService.unlinkAllTagsFromPost(post.getId());
 
         post.setTitle(data.getTitle());
         post.setContent(data.getContent());
@@ -107,18 +94,7 @@ public class PostServiceImpl implements PostService {
             post.setImage(imageFileName);
         }
 
-        for (String tagTitle : data.getTags()) {
-            Optional<Tag> maybeTag = tagRepository.findTagByTitle(tagTitle);
-            if (maybeTag.isPresent()) {
-                tagRepository.linkTagToPost(maybeTag.get().getId(), post.getId());
-                continue;
-            }
-
-            Tag tag = new Tag(tagTitle);
-
-            tagRepository.save(tag);
-            tagRepository.linkTagToPost(tag.getId(), post.getId());
-        }
+        tagService.addTagsToPost(post.getId(), data.getTags());
     }
 
     @Override
