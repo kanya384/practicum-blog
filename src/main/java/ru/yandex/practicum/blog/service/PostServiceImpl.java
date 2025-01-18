@@ -84,7 +84,7 @@ public class PostServiceImpl implements PostService {
         tagService.unlinkAllTagsFromPost(post.getId());
 
         post.setTitle(data.getTitle());
-        post.setContent(data.getContent());
+        post.setContent(data.getContent().replaceAll("\n", "<br />"));
 
         postRepository.update(post);
 

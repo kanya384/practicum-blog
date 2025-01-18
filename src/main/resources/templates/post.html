@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,8 +22,7 @@
         <ul>
             <li>
                 <input type="file" name="image" autocomplete="off" class="field-style field-full align-none"
-                       accept="image/png, image/jpeg, image/jpg"
-                       placeholder="Картинка поста"/>
+                       accept="image/png, image/jpeg, image/jpg"/>
             </li>
             <li>
                 <input type="text" class="field-style field-full align-none" autocomplete="off"
@@ -31,7 +30,7 @@
                        id="title" name="title" th:value="${post.title}"/>
             </li>
             <li>
-                <textarea type="text" class="field-style field-full align-none" style="height: 300px"
+                <textarea class="field-style field-full align-none" style="height: 300px"
                           placeholder="Содержание поста"
                           id="content" name="content"
                           autocomplete="off"
@@ -159,7 +158,7 @@
 </main>
 </body>
 <style>
-    import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap');
+    import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700');
 
     *{
         box-sizing: border-box;
@@ -443,15 +442,16 @@
         border: solid 1px #ececec;
     }
 
-    .pagination-item a {
-        padding: 11px 16px 11px 16px;
-        display: inline-block;
-        transition: .2s all;
+         .pagination-item a {
+         padding: 11px 16px 11px 16px;
+         display: inline-block;
+         transition: .2s all;
 
-        &:hover {
-          background-color: #ececec;
-        }
-      }
+
+       }
+     .pagination-item a:hover {
+           background-color: #ececec;
+         }
 
   .pg-active {
     background-color: #ececec;
@@ -660,7 +660,7 @@
         document.querySelector('form.form-style-9').style.display = 'block';
         document.querySelector('.post-item').style.display = 'none';
         document.querySelector('.button-wrapper').style.display = 'none';
-        document.querySelector('textarea').textContent = document.querySelector('textarea').textContent.replaceAll('\\n', '\n')
+        document.querySelector('textarea').textContent = document.querySelector('textarea').textContent.replaceAll('\\n', '\n').replaceAll('\n\n', '\n')
 
     });
 

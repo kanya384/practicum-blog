@@ -20,6 +20,15 @@ import java.util.Optional;
 public class PostController {
     private final PostService postService;
 
+    @GetMapping
+    public String postsList(@RequestParam(value = "search", required = false) String search, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "limit", defaultValue = "10") int limit, Model model) {
+        model.addAttribute("result", postService.readPosts(search, page, limit));
+        model.addAttribute("form", new CreatePostDTO());
+        model.addAttribute("search", search);
+        model.addAttribute("pageSizes", List.of(10, 20, 50));
+        return "feed";
+    }
+
     @PostMapping(path = "", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public String createPost(@ModelAttribute CreatePostDTO data) {
         postService.save(data);
@@ -36,15 +45,6 @@ public class PostController {
     public String addLikeToPost(@PathVariable("id") Long postId, @RequestHeader(value = HttpHeaders.REFERER, required = false) final String referrer) {
         postService.addLikeToPost(postId);
         return "redirect:" + referrer;
-    }
-
-    @GetMapping
-    public String postsList(@RequestParam(value = "search", required = false) String search, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "limit", defaultValue = "10") int limit, Model model) {
-        model.addAttribute("result", postService.readPosts(search, page, limit));
-        model.addAttribute("form", new CreatePostDTO());
-        model.addAttribute("search", search);
-        model.addAttribute("pageSizes", List.of(10, 20, 50));
-        return "feed";
     }
 
     @GetMapping("/{id}")

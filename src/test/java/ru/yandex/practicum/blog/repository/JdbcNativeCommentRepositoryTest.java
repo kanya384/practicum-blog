@@ -51,8 +51,10 @@ public class JdbcNativeCommentRepositoryTest {
 
         commentRepository.save(comment);
 
-        Comment savedComment = commentRepository.commentsOfPost(1L).stream()
-                .filter(createdPosts -> createdPosts.getId().equals(1L))
+        Long commentId = comment.getId();
+
+        Comment savedComment = commentRepository.commentsOfPost(comment.getPostId()).stream()
+                .filter(createdPosts -> createdPosts.getId().equals(commentId))
                 .findFirst()
                 .orElse(null);
 
