@@ -18,9 +18,12 @@
         </init-param>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>ru.yandex.practicum.WebConfiguration</param-value>
+            <param-value>ru.yandex.practicum.blog.WebConfiguration</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <multipart-config>
+            <location></location>
+        </multipart-config>
     </servlet>
 
     <!-- DispatcherServlet обрабатывает все запросы -->
