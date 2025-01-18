@@ -47,7 +47,7 @@ public class JdbcNativeCommentRepositoryTest {
         //Очищаем базу, а то будет конфликт присвоения id для новой записи
         jdbcTemplate.execute("DELETE FROM comments");
 
-        Comment comment = new Comment(1L, 1L, "comment - 1");
+        Comment comment = new Comment(1L, "comment - 1");
 
         commentRepository.save(comment);
 
@@ -56,6 +56,7 @@ public class JdbcNativeCommentRepositoryTest {
                 .findFirst()
                 .orElse(null);
 
+        assertNotNull(savedComment.getId());
         assertNotNull(savedComment);
 
         assertEquals("comment - 1", savedComment.getContent());

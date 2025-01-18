@@ -6,6 +6,7 @@ import ru.yandex.practicum.blog.model.Post;
 import ru.yandex.practicum.blog.model.Tag;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,12 +14,14 @@ import java.util.ArrayList;
 public class PostRowMapper implements RowMapper<Post> {
     @Override
     public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+
         Post post = new Post(
                 rs.getLong("id"),
                 rs.getString("title"),
                 rs.getString("image"),
                 rs.getString("content"),
                 new ArrayList<>(),
+                hasColumn(rs, "comments_count") ? rs.getInt("comments_count") : 0,
                 rs.getInt("likes")
         );
 
@@ -40,5 +43,16 @@ public class PostRowMapper implements RowMapper<Post> {
 
 
         return post;
+    }
+
+    private static boolean hasColumn(ResultSet rs, String columnName) throws SQLException {
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columns = rsmd.getColumnCount();
+        for (int x = 1; x <= columns; x++) {
+            if (columnName.equals(rsmd.getColumnName(x).toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

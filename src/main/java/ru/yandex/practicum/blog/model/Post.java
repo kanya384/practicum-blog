@@ -16,13 +16,15 @@ public class Post {
     private String image;
     private String content;
     private List<Tag> tags;
+    private Integer commentsCount;
     private Integer likes;
 
-    public Post(String title, String image, String content, List<Tag> tags, Integer likes) {
+    public Post(String title, String image, String content) {
         this.title = title;
         this.image = image;
         this.content = content;
-        this.tags = tags;
-        this.likes = likes;
+        this.tags = null;
+        this.commentsCount = 0;
+        this.likes = 0;
     }
 }

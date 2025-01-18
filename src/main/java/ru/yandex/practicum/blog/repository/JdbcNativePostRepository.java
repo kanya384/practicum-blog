@@ -2,9 +2,7 @@ package ru.yandex.practicum.blog.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -19,11 +17,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-@RequiredArgsConstructor
-public class JdbcNativePostRepository implements PostRepository {
+public class JdbcNativePostRepository extends JdbcBaseRepository<Post> implements PostRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<Post> mapper;
+    public JdbcNativePostRepository(JdbcTemplate jdbc, RowMapper<Post> mapper) {
+        super(jdbc, mapper);
+    }
 
     @AllArgsConstructor
     @Getter
@@ -36,30 +34,27 @@ public class JdbcNativePostRepository implements PostRepository {
 
     @Override
     public Optional<Post> findById(Long id) {
-        try {
-            Post post = jdbcTemplate.queryForObject(
-                    """
-                            select p.id, p.title, p.image, p.content, p.likes, t.id as tag_id, t.title as tag_title 
-                            from posts as p 
-                            left join post_tags as pt on pt.post_id = p.id
-                            left join tags as t on pt.tag_id = t.id
-                            where p.id = ?
-                            """,
-                    mapper,
-                    id
-            );
-
-            return Optional.ofNullable(post);
-        } catch (EmptyResultDataAccessException ignored) {
-            return Optional.empty();
-        }
+        return findOne("""
+                        select p.id, p.title, p.image, p.content, p.likes, t.id as tag_id, t.title as tag_title 
+                        from posts as p 
+                        left join post_tags as pt on pt.post_id = p.id
+                        left join tags as t on pt.tag_id = t.id
+                        where p.id = ?
+                        """,
+                id);
     }
 
     @Override
     public List<Post> findAll(int offset, int limit) {
-        List<Post> posts = jdbcTemplate.query(
-                "select id, title, image, content, likes from posts limit ? offset ?",
-                mapper,
+        List<Post> posts = findMany(
+                """
+                        select p.id, p.title, p.image, p.content, p.likes, sum(case when c.content is null then 0 else 1 end) as comments_count
+                        from posts as p
+                        left join comments as c on c.post_id = p.id
+                        group by p.id
+                        limit ?
+                        offset ?
+                        """,
                 limit,
                 offset
         );
@@ -70,15 +65,76 @@ public class JdbcNativePostRepository implements PostRepository {
     }
 
     @Override
+    public List<Post> findByTag(String search, int offset, int limit) {
+        List<Post> posts = findMany(
+                """
+                        select p.id, p.title, p.image, p.content, p.likes, sum(case when c.content is null then 0 else 1 end) as comments_count
+                        from posts as p
+                        left join comments as c on c.post_id = p.id
+                        where p.id in (
+                            select pt.post_id from tags as t
+                            left join post_tags as pt on pt.tag_id = t.id
+                            where lower(t.title) like ?
+                        )
+                        group by p.id
+                        limit ?
+                        offset ?
+                        """,
+                "%" + search.toLowerCase() + "%",
+                limit,
+                offset
+        );
+
+        findTagsForPosts(posts);
+
+        return posts;
+    }
+
+    @Override
+    public int totalCount() {
+        Integer count = jdbc.queryForObject(
+                "select count(*) as total from posts",
+                Integer.class
+        );
+        return count == null ? 0 : count;
+    }
+
+    @Override
+    public int totalCount(String search) {
+        Integer count = jdbc.queryForObject(
+                """
+                        select count(*)
+                        from posts as p
+                        where p.id in (
+                            select pt.post_id from tags as t
+                            left join post_tags as pt on pt.tag_id = t.id
+                            where lower(t.title) like ?
+                        )
+                        """,
+                Integer.class,
+                "%" + search.toLowerCase() + "%"
+        );
+        return count == null ? 0 : count;
+    }
+
+    @Override
     public void save(Post post) {
-        jdbcTemplate.update("insert into posts(title, image, content, likes) values (?, ?, ?, ?)",
+        long id = insert("insert into posts(title, image, content, likes) values (?, ?, ?, ?)",
                 post.getTitle(), post.getImage(), post.getContent(), post.getLikes()
         );
+
+        post.setId(id);
+    }
+
+    @Override
+    public void update(Post post) {
+        update("update posts set title = ?, image = ?, content = ?, likes = ? where id = ?",
+                post.getTitle(), post.getImage(), post.getContent(), post.getLikes(), post.getId());
     }
 
     @Override
     public void deleteById(Long postId) {
-        jdbcTemplate.update("delete from posts where id = ?", postId);
+        delete("delete from posts where id = ?", postId);
     }
 
     private void findTagsForPosts(List<Post> posts) {
@@ -86,7 +142,7 @@ public class JdbcNativePostRepository implements PostRepository {
                 .map(Post::getId)
                 .toList();
 
-        List<PostTag> postTags = jdbcTemplate.query(con -> {
+        List<PostTag> postTags = jdbc.query(con -> {
             StringBuilder query = new StringBuilder();
             query.append("""
                     select p.id as post_id, t.id as tag_id, t.title as tag_title from post_tags as pt

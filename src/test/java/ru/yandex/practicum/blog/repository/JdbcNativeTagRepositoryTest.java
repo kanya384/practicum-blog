@@ -11,9 +11,9 @@ import ru.yandex.practicum.blog.model.Tag;
 import ru.yandex.practicum.blog.repository.mappers.TagRowMapper;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(classes = {DataSourceConfiguration.class, JdbcNativeTagRepository.class, TagRowMapper.class})
 @TestPropertySource(locations = "classpath:test-application.properties")
@@ -54,7 +54,7 @@ public class JdbcNativeTagRepositoryTest {
         //Очищаем базу, а то будет конфликт присвоения id для новой записи
         jdbcTemplate.execute("DELETE FROM tags");
 
-        Tag tag = new Tag(1L, "tag - 1");
+        Tag tag = new Tag("tag - 1");
 
         tagRepository.save(tag);
 
@@ -64,6 +64,7 @@ public class JdbcNativeTagRepositoryTest {
                 .orElse(null);
 
         assertNotNull(savedTag);
+        assertNotNull(savedTag.getId());
 
         assertEquals("tag - 1", savedTag.getTitle());
     }
@@ -72,5 +73,11 @@ public class JdbcNativeTagRepositoryTest {
     void findAll_shouldReturnTags() {
         List<Tag> tags = tagRepository.findAll();
         assertEquals(2, tags.size());
+    }
+
+    @Test
+    void findTagByTitle_shouldReturnTag() {
+        Optional<Tag> maybeTag = tagRepository.findTagByTitle("tag - 1");
+        assertTrue(maybeTag.isPresent());
     }
 }

@@ -29,6 +29,7 @@ public class JdbcNativePostRepositoryTest {
         jdbcTemplate.execute("DELETE FROM posts");
         jdbcTemplate.execute("DELETE FROM tags");
         jdbcTemplate.execute("DELETE FROM post_tags");
+        jdbcTemplate.execute("DELETE FROM comments");
 
         /* insert posts */
         jdbcTemplate.execute(
@@ -59,6 +60,10 @@ public class JdbcNativePostRepositoryTest {
 
         jdbcTemplate.execute(
                 "insert into post_tags (post_id, tag_id) values (2, 2);");
+
+        /*insert post */
+        jdbcTemplate.execute(
+                "insert into comments(id, post_id, content) values (1, 1, 'test comment');");
     }
 
     @Test
@@ -66,7 +71,7 @@ public class JdbcNativePostRepositoryTest {
         //Очищаем базу, а то будет конфликт присвоения id для новой записи
         jdbcTemplate.execute("DELETE FROM posts");
 
-        Post post = new Post(1L, "post - 4", "image - 4", "content - 4", null, 0);
+        Post post = new Post("post - 4", "image - 4", "content - 4");
 
         postRepository.save(post);
 
@@ -77,10 +82,29 @@ public class JdbcNativePostRepositoryTest {
 
         assertNotNull(savedPost);
 
+        assertNotNull(savedPost.getId());
         assertEquals("post - 4", savedPost.getTitle());
         assertEquals("image - 4", savedPost.getImage());
         assertEquals("content - 4", savedPost.getContent());
         assertEquals(0, savedPost.getLikes());
+    }
+
+    @Test
+    void update_shouldUpdatePostLikesToDatabase() {
+        Post post = postRepository.findById(1L).orElse(null);
+        assertNotNull(post);
+
+        post.setLikes(post.getLikes() + 1);
+        postRepository.update(post);
+
+        Post savedPost = postRepository.findAll(0, 999).stream()
+                .filter(createdPosts -> createdPosts.getId().equals(1L))
+                .findFirst()
+                .orElse(null);
+
+        assertNotNull(savedPost);
+
+        assertEquals(1, savedPost.getLikes());
     }
 
     @Test
@@ -123,6 +147,21 @@ public class JdbcNativePostRepositoryTest {
     }
 
     @Test
+    void findAll_shouldContainCommentsCountInPosts() {
+        List<Post> posts = postRepository.findAll(0, 10);
+
+        assertNotNull(posts);
+
+        Post post = posts.stream()
+                .filter(createdPosts -> createdPosts.getId().equals(1L))
+                .findFirst()
+                .orElse(null);
+
+        assertNotNull(post);
+        assertEquals(1, post.getCommentsCount());
+    }
+
+    @Test
     void deleteById_shouldRemovePostFromDatabase() {
         postRepository.deleteById(1L);
 
@@ -134,5 +173,17 @@ public class JdbcNativePostRepositoryTest {
                 .orElse(null);
 
         assertNull(deletedPost);
+    }
+
+    @Test
+    void totalCount_shouldReturnCountOfPosts() {
+        int count = postRepository.totalCount();
+        assertEquals(3, count);
+    }
+
+    @Test
+    void totalCount_shouldReturnCountOfPostsWithTag() {
+        int count = postRepository.totalCount("tag");
+        assertEquals(2, count);
     }
 }

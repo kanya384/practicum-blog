@@ -10,7 +10,16 @@ public interface PostRepository {
 
     List<Post> findAll(int offset, int limit);
 
+
+    List<Post> findByTag(String search, int offset, int limit);
+
+    int totalCount();
+
+    int totalCount(String search);
+
     void save(Post post);
+
+    void update(Post post);
 
     void deleteById(Long postId);
 }
