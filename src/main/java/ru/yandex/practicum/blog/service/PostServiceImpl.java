@@ -70,7 +70,7 @@ public class PostServiceImpl implements PostService {
         String imageFileName = storageUtil.store(data.getImage());
 
         Post post = new Post(data.getTitle(), imageFileName, data.getContent().replaceAll("\n", "<br />"));
-        postRepository.save(post);
+        post = postRepository.save(post);
 
         tagService.addTagsToPost(post.getId(), data.getTags());
     }
@@ -103,12 +103,12 @@ public class PostServiceImpl implements PostService {
 
     @Transactional
     @Override
-    public void addLikeToPost(Long id) {
+    public Post addLikeToPost(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new InternalServerException("no post with id = " + id));
 
         post.setLikes(post.getLikes() + 1);
 
-        postRepository.update(post);
+        return postRepository.update(post);
     }
 }

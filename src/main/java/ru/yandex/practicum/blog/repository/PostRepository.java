@@ -17,9 +17,9 @@ public interface PostRepository {
 
     int totalCount(String search);
 
-    void save(Post post);
+    Post save(Post post);
 
-    void update(Post post);
+    Post update(Post post);
 
     void deleteById(Long postId);
 }

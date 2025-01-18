@@ -4,6 +4,7 @@ import ru.yandex.practicum.blog.dto.post.CreatePostDTO;
 import ru.yandex.practicum.blog.dto.post.EditPostDTO;
 import ru.yandex.practicum.blog.dto.post.PostDetailedDTO;
 import ru.yandex.practicum.blog.dto.post.PostsPageDto;
+import ru.yandex.practicum.blog.model.Post;
 
 import java.util.Optional;
 
@@ -18,5 +19,5 @@ public interface PostService {
 
     void deletePost(Long id);
 
-    void addLikeToPost(Long id);
+    Post addLikeToPost(Long id);
 }

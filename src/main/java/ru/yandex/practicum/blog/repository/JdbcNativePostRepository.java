@@ -118,18 +118,22 @@ public class JdbcNativePostRepository extends JdbcBaseRepository<Post> implement
     }
 
     @Override
-    public void save(Post post) {
+    public Post save(Post post) {
         long id = insert("insert into posts(title, image, content, likes) values (?, ?, ?, ?)",
                 post.getTitle(), post.getImage(), post.getContent(), post.getLikes()
         );
 
         post.setId(id);
+
+        return post;
     }
 
     @Override
-    public void update(Post post) {
+    public Post update(Post post) {
         update("update posts set title = ?, image = ?, content = ?, likes = ? where id = ?",
                 post.getTitle(), post.getImage(), post.getContent(), post.getLikes(), post.getId());
+
+        return post;
     }
 
     @Override

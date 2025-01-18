@@ -4,14 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.yandex.practicum.blog.dto.comment.CreateCommentDTO;
 import ru.yandex.practicum.blog.dto.comment.EditCommentDTO;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.repository.CommentRepository;
+import ru.yandex.practicum.blog.service.config.CommentServiceTestConfig;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +18,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@SpringJUnitConfig(classes = {CommentsServiceTest.TestConfig.class, CommentsServiceImpl.class})
+@SpringJUnitConfig(classes = {CommentServiceTestConfig.class, CommentsServiceImpl.class})
 @TestPropertySource(locations = "classpath:test-application.properties")
 public class CommentsServiceTest {
     @Autowired
@@ -77,18 +76,5 @@ public class CommentsServiceTest {
         commentsService.delete(1L);
         verify(commentRepository, times(1))
                 .deleteById(Mockito.any());
-    }
-
-    @Configuration
-    static class TestConfig {
-        @Bean
-        public CommentsService commentsService(CommentRepository commentRepository) {
-            return new CommentsServiceImpl(commentRepository);
-        }
-
-        @Bean
-        public CommentRepository commentRepository() {
-            return mock(CommentRepository.class);
-        }
     }
 }

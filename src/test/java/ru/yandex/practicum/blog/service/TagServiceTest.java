@@ -4,18 +4,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.yandex.practicum.blog.model.Tag;
 import ru.yandex.practicum.blog.repository.TagRepository;
+import ru.yandex.practicum.blog.service.config.TagServiceTestConfig;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
-@SpringJUnitConfig(classes = {TagServiceTest.TestConfig.class, TagServiceImpl.class})
+@SpringJUnitConfig(classes = {TagServiceTestConfig.class, TagServiceImpl.class})
 public class TagServiceTest {
     @Autowired
     private TagService tagService;
@@ -55,18 +54,5 @@ public class TagServiceTest {
         tagService.unlinkAllTagsFromPost(1L);
 
         verify(tagRepository, times(1)).unlinkAllTagsFromPost(1L);
-    }
-
-    @Configuration
-    static class TestConfig {
-        @Bean
-        public TagService tagService(TagRepository tagRepository) {
-            return new TagServiceImpl(tagRepository);
-        }
-
-        @Bean
-        public TagRepository tagRepository() {
-            return mock(TagRepository.class);
-        }
     }
 }
