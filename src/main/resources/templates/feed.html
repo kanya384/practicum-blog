@@ -75,7 +75,8 @@
         </div>
         <div class="right-section">
             <a class="title" th:href="@{${'/posts/' + post.id}}" th:utext="${post.title}"></a>
-            <p th:utext="${#strings.contains(post.content,'<br />')} ? ${#strings.substringBefore(post.content,'<br />')} : ${post.content}"></p>
+            <p class="article"
+               th:utext="${#strings.contains(post.content,'<br />')} ? ${#strings.substringBefore(post.content,'<br />')} : ${post.content}"></p>
             <div class="row">
                 <div class="stats-container">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -613,6 +614,13 @@
     color: #48556a
 }
 
+.article{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 60px;
+    line-height: 20px;
+}
+
 </style>
 <script>
     document.querySelector('#add-post-button').addEventListener('click', () => {
@@ -655,7 +663,7 @@
         e.target.parentNode.remove();
     })
 
-    document.querySelector("[name='limit']").addEventListener('change', (e)=>{
+    document.querySelector("select[name='limit']").addEventListener('change', (e)=>{
         e.target.closest('form').submit()
     });
 
