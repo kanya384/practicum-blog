@@ -119,6 +119,24 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.7.16</version>
+                <configuration>
+                    <container>
+                        <containerId>tomcat8x</containerId>
+                        <type>installed</type>
+                        <home>/Users/laurkankushu/dev/apache-tomcat</home>
+                    </container>
+                    <configuration>
+                        <type>existing</type>
+                        <home>/Users/laurkankushu/dev/apache-tomcat</home>
+                    </configuration>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
