@@ -6,16 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import ru.yandex.practicum.blog.configuration.DataSourceConfiguration;
 import ru.yandex.practicum.blog.model.Post;
-import ru.yandex.practicum.blog.repository.mappers.PostRowMapper;
+import ru.yandex.practicum.blog.repository.config.RepositoryConfiguration;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(classes = {DataSourceConfiguration.class, JdbcNativePostRepository.class, PostRowMapper.class})
+@SpringJUnitConfig(classes = RepositoryConfiguration.class)
 @TestPropertySource(locations = "classpath:test-application.properties")
 public class JdbcNativePostRepositoryTest {
     @Autowired

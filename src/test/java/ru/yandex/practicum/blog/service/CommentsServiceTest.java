@@ -10,7 +10,7 @@ import ru.yandex.practicum.blog.dto.comment.CreateCommentDTO;
 import ru.yandex.practicum.blog.dto.comment.EditCommentDTO;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.repository.CommentRepository;
-import ru.yandex.practicum.blog.service.config.CommentServiceTestConfig;
+import ru.yandex.practicum.blog.service.config.CommentServiceTestConfiguration;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@SpringJUnitConfig(classes = {CommentServiceTestConfig.class, CommentsServiceImpl.class})
+@SpringJUnitConfig(classes = {CommentServiceTestConfiguration.class, CommentsServiceImpl.class})
 @TestPropertySource(locations = "classpath:test-application.properties")
 public class CommentsServiceTest {
     @Autowired

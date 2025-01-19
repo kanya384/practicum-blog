@@ -9,7 +9,7 @@ import ru.yandex.practicum.blog.service.CommentsServiceImpl;
 import static org.mockito.Mockito.mock;
 
 @Configuration
-public class CommentServiceTestConfig {
+public class CommentServiceTestConfiguration {
     @Bean
     public CommentsService commentsService(CommentRepository commentRepository) {
         return new CommentsServiceImpl(commentRepository);

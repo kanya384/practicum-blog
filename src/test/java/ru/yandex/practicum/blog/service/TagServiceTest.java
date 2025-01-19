@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.yandex.practicum.blog.model.Tag;
 import ru.yandex.practicum.blog.repository.TagRepository;
-import ru.yandex.practicum.blog.service.config.TagServiceTestConfig;
+import ru.yandex.practicum.blog.service.config.TagServiceTestConfiguration;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
-@SpringJUnitConfig(classes = {TagServiceTestConfig.class, TagServiceImpl.class})
+@SpringJUnitConfig(classes = {TagServiceTestConfiguration.class, TagServiceImpl.class})
 public class TagServiceTest {
     @Autowired
     private TagService tagService;

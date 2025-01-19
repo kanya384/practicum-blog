@@ -9,7 +9,7 @@ import ru.yandex.practicum.blog.service.TagServiceImpl;
 import static org.mockito.Mockito.mock;
 
 @Configuration
-public class TagServiceTestConfig {
+public class TagServiceTestConfiguration {
     @Bean
     public TagService tagService(TagRepository tagRepository) {
         return new TagServiceImpl(tagRepository);

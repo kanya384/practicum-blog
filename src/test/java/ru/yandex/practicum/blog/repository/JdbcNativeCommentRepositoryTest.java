@@ -6,16 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import ru.yandex.practicum.blog.configuration.DataSourceConfiguration;
 import ru.yandex.practicum.blog.model.Comment;
-import ru.yandex.practicum.blog.repository.mappers.CommentRowMapper;
+import ru.yandex.practicum.blog.repository.config.RepositoryConfiguration;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringJUnitConfig(classes = {DataSourceConfiguration.class, JdbcNativeCommentRepository.class, CommentRowMapper.class})
+@SpringJUnitConfig(classes = RepositoryConfiguration.class)
 @TestPropertySource(locations = "classpath:test-application.properties")
 public class JdbcNativeCommentRepositoryTest {
     @Autowired

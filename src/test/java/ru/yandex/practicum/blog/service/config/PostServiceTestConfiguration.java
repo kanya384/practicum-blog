@@ -12,7 +12,7 @@ import ru.yandex.practicum.blog.utils.StorageUtil;
 import static org.mockito.Mockito.mock;
 
 @Configuration
-public class PostServiceTestConfig {
+public class PostServiceTestConfiguration {
     @Bean
     public PostService postService(PostRepository postRepository, CommentsService commentsService,
                                    TagService tagService, StorageUtil storageUtil) {

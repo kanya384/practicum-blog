@@ -14,7 +14,7 @@ import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.model.Post;
 import ru.yandex.practicum.blog.model.Tag;
 import ru.yandex.practicum.blog.repository.PostRepository;
-import ru.yandex.practicum.blog.service.config.PostServiceTestConfig;
+import ru.yandex.practicum.blog.service.config.PostServiceTestConfiguration;
 import ru.yandex.practicum.blog.utils.StorageUtil;
 
 import java.util.List;
@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringJUnitConfig(classes = {PostServiceTestConfig.class, PostServiceImpl.class})
+@SpringJUnitConfig(classes = {PostServiceTestConfiguration.class, PostServiceImpl.class})
 public class PostServiceTest {
     @Autowired
     private PostService postService;
