@@ -6,12 +6,10 @@ import ru.yandex.practicum.blog.dto.post.PostDetailedDTO;
 import ru.yandex.practicum.blog.dto.post.PostsPageDto;
 import ru.yandex.practicum.blog.model.Post;
 
-import java.util.Optional;
-
 public interface PostService {
     PostsPageDto readPosts(String search, int page, int limit);
 
-    Optional<PostDetailedDTO> readPostById(Long id);
+    PostDetailedDTO readPostById(Long id);
 
     void save(CreatePostDTO post);
 

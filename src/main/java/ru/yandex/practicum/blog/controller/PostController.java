@@ -12,7 +12,6 @@ import ru.yandex.practicum.blog.dto.post.PostDetailedDTO;
 import ru.yandex.practicum.blog.service.PostService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/posts")
@@ -49,12 +48,9 @@ public class PostController {
 
     @GetMapping("/{id}")
     public String readPostById(@PathVariable("id") Long id, Model model) {
-        Optional<PostDetailedDTO> maybePost = postService.readPostById(id);
-        if (maybePost.isEmpty()) {
-            return "404";
-        }
+        PostDetailedDTO post = postService.readPostById(id);
 
-        model.addAttribute("post", maybePost.get());
+        model.addAttribute("post", post);
         model.addAttribute("form", new CreatePostDTO());
         return "post";
     }

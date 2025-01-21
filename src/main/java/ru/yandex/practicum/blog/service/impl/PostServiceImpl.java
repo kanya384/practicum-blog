@@ -1,4 +1,4 @@
-package ru.yandex.practicum.blog.service;
+package ru.yandex.practicum.blog.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,10 +7,13 @@ import ru.yandex.practicum.blog.dto.post.CreatePostDTO;
 import ru.yandex.practicum.blog.dto.post.EditPostDTO;
 import ru.yandex.practicum.blog.dto.post.PostDetailedDTO;
 import ru.yandex.practicum.blog.dto.post.PostsPageDto;
-import ru.yandex.practicum.blog.exception.InternalServerException;
+import ru.yandex.practicum.blog.exception.PostNotFoundException;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.model.Post;
 import ru.yandex.practicum.blog.repository.PostRepository;
+import ru.yandex.practicum.blog.service.CommentsService;
+import ru.yandex.practicum.blog.service.PostService;
+import ru.yandex.practicum.blog.service.TagService;
 import ru.yandex.practicum.blog.utils.StorageUtil;
 
 import java.util.List;
@@ -44,17 +47,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Optional<PostDetailedDTO> readPostById(Long id) {
+    public PostDetailedDTO readPostById(Long id) {
         Optional<Post> maybePost = postRepository.findById(id);
         if (maybePost.isEmpty()) {
-            return Optional.empty();
+            throw new PostNotFoundException("no post with id = " + id);
         }
 
         Post post = maybePost.get();
 
         List<Comment> comments = commentsService.readCommentsOfPost(post.getId());
 
-        return Optional.of(PostDetailedDTO.builder()
+        return PostDetailedDTO.builder()
                 .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
@@ -62,7 +65,7 @@ public class PostServiceImpl implements PostService {
                 .likes(post.getLikes())
                 .tags(post.getTags())
                 .comments(comments)
-                .build());
+                .build();
     }
 
     @Transactional
@@ -79,7 +82,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void update(Long id, EditPostDTO data) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new InternalServerException("no post with id = " + id));
+                .orElseThrow(() -> new PostNotFoundException("no post with id = " + id));
 
         tagService.unlinkAllTagsFromPost(post.getId());
 
@@ -105,7 +108,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post addLikeToPost(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new InternalServerException("no post with id = " + id));
+                .orElseThrow(() -> new PostNotFoundException("no post with id = " + id));
 
         post.setLikes(post.getLikes() + 1);
 

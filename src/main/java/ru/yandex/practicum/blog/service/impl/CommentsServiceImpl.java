@@ -1,4 +1,4 @@
-package ru.yandex.practicum.blog.service;
+package ru.yandex.practicum.blog.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,6 +7,7 @@ import ru.yandex.practicum.blog.dto.comment.EditCommentDTO;
 import ru.yandex.practicum.blog.exception.InternalServerException;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.repository.CommentRepository;
+import ru.yandex.practicum.blog.service.CommentsService;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.yandex.practicum.blog.repository;
+package ru.yandex.practicum.blog.repository.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,9 +8,12 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.yandex.practicum.blog.model.Post;
 import ru.yandex.practicum.blog.model.Tag;
+import ru.yandex.practicum.blog.repository.PostRepository;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -146,31 +149,7 @@ public class JdbcNativePostRepository extends JdbcBaseRepository<Post> implement
                 .map(Post::getId)
                 .toList();
 
-        List<PostTag> postTags = jdbc.query(con -> {
-            StringBuilder query = new StringBuilder();
-            query.append("""
-                    select p.id as post_id, t.id as tag_id, t.title as tag_title from post_tags as pt
-                    left join tags as t on t.id = pt.tag_id
-                    left join posts as p on p.id = pt.post_id
-                    where p.id in (
-                    """);
-
-            for (int i = 0; i < postIds.size(); i++) {
-                if (i == 0) {
-                    query.append("?");
-                    continue;
-                }
-                query.append(", ?");
-            }
-            query.append(")");
-
-            PreparedStatement stmt = con.prepareStatement(query.toString());
-            for (int i = 0; i < postIds.size(); i++) {
-                stmt.setLong(i + 1, postIds.get(i));
-            }
-
-            return stmt;
-        }, mapToPostTag);
+        List<PostTag> postTags = jdbc.query(con -> preparePostTagsQuery(con, postIds), mapToPostTag);
 
         Map<Long, Post> postIdToPost = posts.stream()
                 .collect(
@@ -185,6 +164,32 @@ public class JdbcNativePostRepository extends JdbcBaseRepository<Post> implement
             post.getTags()
                     .add(new Tag(postTag.getPostId(), postTag.getTagTitle()));
         }
+    }
+
+    private PreparedStatement preparePostTagsQuery(Connection con, List<Long> postIds) throws SQLException {
+        StringBuilder query = new StringBuilder();
+        query.append("""
+                select p.id as post_id, t.id as tag_id, t.title as tag_title from post_tags as pt
+                left join tags as t on t.id = pt.tag_id
+                left join posts as p on p.id = pt.post_id
+                where p.id in (
+                """);
+
+        for (int i = 0; i < postIds.size(); i++) {
+            if (i == 0) {
+                query.append("?");
+                continue;
+            }
+            query.append(", ?");
+        }
+        query.append(")");
+
+        PreparedStatement stmt = con.prepareStatement(query.toString());
+        for (int i = 0; i < postIds.size(); i++) {
+            stmt.setLong(i + 1, postIds.get(i));
+        }
+
+        return stmt;
     }
 
     private final RowMapper<PostTag> mapToPostTag = (ResultSet rs, int rowNum) -> new PostTag(

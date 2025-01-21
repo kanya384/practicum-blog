@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import ru.yandex.practicum.blog.repository.PostRepository;
 import ru.yandex.practicum.blog.service.CommentsService;
 import ru.yandex.practicum.blog.service.PostService;
-import ru.yandex.practicum.blog.service.PostServiceImpl;
 import ru.yandex.practicum.blog.service.TagService;
+import ru.yandex.practicum.blog.service.impl.PostServiceImpl;
 import ru.yandex.practicum.blog.utils.StorageUtil;
 
 import static org.mockito.Mockito.mock;

@@ -11,6 +11,7 @@ import ru.yandex.practicum.blog.dto.comment.EditCommentDTO;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.repository.CommentRepository;
 import ru.yandex.practicum.blog.service.config.CommentServiceTestConfiguration;
+import ru.yandex.practicum.blog.service.impl.CommentsServiceImpl;
 
 import java.util.List;
 import java.util.Optional;

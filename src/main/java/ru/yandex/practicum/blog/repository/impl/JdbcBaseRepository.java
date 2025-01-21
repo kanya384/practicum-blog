@@ -1,4 +1,4 @@
-package ru.yandex.practicum.blog.repository;
+package ru.yandex.practicum.blog.repository.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;

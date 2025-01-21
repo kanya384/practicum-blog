@@ -15,13 +15,13 @@ import ru.yandex.practicum.blog.model.Post;
 import ru.yandex.practicum.blog.model.Tag;
 import ru.yandex.practicum.blog.repository.PostRepository;
 import ru.yandex.practicum.blog.service.config.PostServiceTestConfiguration;
+import ru.yandex.practicum.blog.service.impl.PostServiceImpl;
 import ru.yandex.practicum.blog.utils.StorageUtil;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -86,10 +86,7 @@ public class PostServiceTest {
         when(commentsService.readCommentsOfPost(1L))
                 .thenReturn(List.of(new Comment(1L, 1L, "comment - 1"), new Comment(1L, 1L, "comment - 1")));
 
-        Optional<PostDetailedDTO> maybePost = postService.readPostById(1L);
-        assertTrue(maybePost.isPresent());
-
-        PostDetailedDTO post = maybePost.get();
+        PostDetailedDTO post = postService.readPostById(1L);
 
         assertEquals(1L, post.getId());
         assertEquals("title", post.getTitle());

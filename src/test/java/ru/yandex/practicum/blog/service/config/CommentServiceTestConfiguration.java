@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.yandex.practicum.blog.repository.CommentRepository;
 import ru.yandex.practicum.blog.service.CommentsService;
-import ru.yandex.practicum.blog.service.CommentsServiceImpl;
+import ru.yandex.practicum.blog.service.impl.CommentsServiceImpl;
 
 import static org.mockito.Mockito.mock;
 

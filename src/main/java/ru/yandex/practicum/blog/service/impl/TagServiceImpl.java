@@ -1,9 +1,10 @@
-package ru.yandex.practicum.blog.service;
+package ru.yandex.practicum.blog.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.blog.model.Tag;
 import ru.yandex.practicum.blog.repository.TagRepository;
+import ru.yandex.practicum.blog.service.TagService;
 
 import java.util.List;
 import java.util.Optional;

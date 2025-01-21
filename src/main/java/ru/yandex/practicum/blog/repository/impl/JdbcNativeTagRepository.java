@@ -1,9 +1,10 @@
-package ru.yandex.practicum.blog.repository;
+package ru.yandex.practicum.blog.repository.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import ru.yandex.practicum.blog.model.Tag;
+import ru.yandex.practicum.blog.repository.TagRepository;
 
 import java.util.List;
 import java.util.Optional;

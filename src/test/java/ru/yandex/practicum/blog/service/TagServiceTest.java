@@ -8,6 +8,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.yandex.practicum.blog.model.Tag;
 import ru.yandex.practicum.blog.repository.TagRepository;
 import ru.yandex.practicum.blog.service.config.TagServiceTestConfiguration;
+import ru.yandex.practicum.blog.service.impl.TagServiceImpl;
 
 import java.util.List;
 import java.util.Optional;
