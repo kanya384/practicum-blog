@@ -33,15 +33,15 @@ public class JdbcNativePostRepositoryTest {
         /* insert posts */
         jdbcTemplate.execute(
                 "insert into posts(id, title, image, content, likes) " +
-                        "values (1, 'post - 1', 'image - 1', 'content - 1', 0);");
+                        "values (-1, 'post - 1', 'image - 1', 'content - 1', 0);");
 
         jdbcTemplate.execute(
                 "insert into posts(id, title, image, content, likes) " +
-                        "values (2, 'post - 2', 'image - 2', 'content - 2', 0);");
+                        "values (-2, 'post - 2', 'image - 2', 'content - 2', 0);");
 
         jdbcTemplate.execute(
                 "insert into posts(id, title, image, content, likes) " +
-                        "values (3, 'post - 3', 'image - 3', 'content - 3', 0);");
+                        "values (-3, 'post - 3', 'image - 3', 'content - 3', 0);");
 
         /* insert tags */
         jdbcTemplate.execute(
@@ -52,17 +52,17 @@ public class JdbcNativePostRepositoryTest {
 
         /* link tags to posts */
         jdbcTemplate.execute(
-                "insert into post_tags (post_id, tag_id) values (1, 1);");
+                "insert into post_tags (post_id, tag_id) values (-1, 1);");
 
         jdbcTemplate.execute(
-                "insert into post_tags (post_id, tag_id) values (1, 2);");
+                "insert into post_tags (post_id, tag_id) values (-1, 2);");
 
         jdbcTemplate.execute(
-                "insert into post_tags (post_id, tag_id) values (2, 2);");
+                "insert into post_tags (post_id, tag_id) values (-2, 2);");
 
         /*insert post */
         jdbcTemplate.execute(
-                "insert into comments(id, post_id, content) values (1, 1, 'test comment');");
+                "insert into comments(id, post_id, content) values (1, -1, 'test comment');");
     }
 
     @Test
@@ -75,7 +75,7 @@ public class JdbcNativePostRepositoryTest {
         postRepository.save(post);
 
         Post savedPost = postRepository.findAll(0, 999).stream()
-                .filter(createdPosts -> createdPosts.getId().equals(1L))
+                .filter(createdPosts -> createdPosts.getId().equals(post.getId()))
                 .findFirst()
                 .orElse(null);
 
@@ -90,14 +90,14 @@ public class JdbcNativePostRepositoryTest {
 
     @Test
     void update_shouldUpdatePostLikesToDatabase() {
-        Post post = postRepository.findById(1L).orElse(null);
+        Post post = postRepository.findById(-1L).orElse(null);
         assertNotNull(post);
 
         post.setLikes(post.getLikes() + 1);
         postRepository.update(post);
 
         Post savedPost = postRepository.findAll(0, 999).stream()
-                .filter(createdPosts -> createdPosts.getId().equals(1L))
+                .filter(createdPosts -> createdPosts.getId().equals(post.getId()))
                 .findFirst()
                 .orElse(null);
 
@@ -108,9 +108,9 @@ public class JdbcNativePostRepositoryTest {
 
     @Test
     void findById_shouldReturnPostByIdWithTags() {
-        Optional<Post> post = postRepository.findById(1L);
+        Optional<Post> post = postRepository.findById(-1L);
         assertTrue(post.isPresent());
-        assertEquals(1L, post.get().getId());
+        assertEquals(-1L, post.get().getId());
         assertEquals(2, post.get().getTags().size());
     }
 
@@ -137,7 +137,7 @@ public class JdbcNativePostRepositoryTest {
         assertNotNull(posts);
 
         Post post = posts.stream()
-                .filter(createdPosts -> createdPosts.getId().equals(1L))
+                .filter(createdPosts -> createdPosts.getId().equals(-1L))
                 .findFirst()
                 .orElse(null);
 
@@ -152,7 +152,7 @@ public class JdbcNativePostRepositoryTest {
         assertNotNull(posts);
 
         Post post = posts.stream()
-                .filter(createdPosts -> createdPosts.getId().equals(1L))
+                .filter(createdPosts -> createdPosts.getId().equals(-1L))
                 .findFirst()
                 .orElse(null);
 
@@ -162,12 +162,12 @@ public class JdbcNativePostRepositoryTest {
 
     @Test
     void deleteById_shouldRemovePostFromDatabase() {
-        postRepository.deleteById(1L);
+        postRepository.deleteById(-1L);
 
         List<Post> posts = postRepository.findAll(0, 10);
 
         Post deletedPost = posts.stream()
-                .filter(createdPosts -> createdPosts.getId().equals(1L))
+                .filter(createdPosts -> createdPosts.getId().equals(-1L))
                 .findFirst()
                 .orElse(null);
 
