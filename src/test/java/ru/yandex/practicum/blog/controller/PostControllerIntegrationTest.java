@@ -85,6 +85,32 @@ public class PostControllerIntegrationTest {
     }
 
     @Test
+    void postsList_shouldReturnEmptyPageIfNoPostsInDb() throws Exception {
+        jdbcTemplate.execute("DELETE FROM posts");
+        jdbcTemplate.execute("DELETE FROM tags");
+        jdbcTemplate.execute("DELETE FROM post_tags");
+
+        mockMvc.perform(get("/posts"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/html;charset=UTF-8"))
+                .andExpect(view().name("feed"))
+                .andExpect(xpath("//div[contains(@class, \"post\")]").nodeCount(0));
+    }
+
+    @Test
+    void postsList_shouldReturnEmptyPageIfPathWithSlash() throws Exception {
+        jdbcTemplate.execute("DELETE FROM posts");
+        jdbcTemplate.execute("DELETE FROM tags");
+        jdbcTemplate.execute("DELETE FROM post_tags");
+
+        mockMvc.perform(get("/posts/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("text/html;charset=UTF-8"))
+                .andExpect(view().name("feed"))
+                .andExpect(xpath("//div[contains(@class, \"post\")]").nodeCount(0));
+    }
+
+    @Test
     void createPost_shouldAddNewPost() throws Exception {
         MockMultipartFile file = new MockMultipartFile("image", "image.jpg", "image/jpg",
                 "some image".getBytes());
@@ -134,10 +160,8 @@ public class PostControllerIntegrationTest {
 
     @Test
     void readPostById_shouldReturn404OnUnknownPost() throws Exception {
-        /*mockMvc.perform(get("/posts/{id}", 999))
-                .andExpect(status().isNotFound())
-                .andExpect(content().contentType("text/html;charset=UTF-8"))
-                .andExpect(view().name("404"));*/
+        mockMvc.perform(get("/posts/{id}", 999))
+                .andExpect(status().isNotFound());
     }
 
     @Test

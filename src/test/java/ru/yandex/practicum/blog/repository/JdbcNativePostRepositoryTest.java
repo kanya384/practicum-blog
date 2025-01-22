@@ -115,6 +115,15 @@ public class JdbcNativePostRepositoryTest {
     }
 
     @Test
+    void findAll_shouldReturnEmptyList() {
+        jdbcTemplate.execute("DELETE FROM posts");
+        List<Post> posts = postRepository.findAll(0, 10);
+
+        assertNotNull(posts);
+        assertEquals(0, posts.size());
+    }
+
+    @Test
     void findAll_shouldReturnThreePosts() {
         List<Post> posts = postRepository.findAll(0, 10);
 

@@ -89,12 +89,12 @@ public class PostServiceImpl implements PostService {
         post.setTitle(data.getTitle());
         post.setContent(data.getContent().replaceAll("\n", "<br />"));
 
-        postRepository.update(post);
-
         if (!data.getImage().isEmpty()) {
             String imageFileName = storageUtil.store(data.getImage());
             post.setImage(imageFileName);
         }
+
+        postRepository.update(post);
 
         tagService.addTagsToPost(post.getId(), data.getTags());
     }

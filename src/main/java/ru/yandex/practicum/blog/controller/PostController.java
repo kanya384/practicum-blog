@@ -19,7 +19,7 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping
+    @GetMapping("/**")
     public String postsList(@RequestParam(value = "search", required = false) String search, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "limit", defaultValue = "10") int limit, Model model) {
         model.addAttribute("result", postService.readPosts(search, page, limit));
         model.addAttribute("form", new CreatePostDTO());
