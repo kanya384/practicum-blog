@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a9d9af10-fe76-46fc-a3f2-4f3c7453bef7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/configuration/DataSourceConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/configuration/MvcConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/configuration/RootAppConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/configuration/ThymeleafConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/configuration/WebConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/controller/CommentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/controller/PostController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/dto/comment/CreateCommentDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/dto/comment/EditCommentDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/dto/post/CreatePostDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/dto/post/EditPostDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/dto/post/PostDetailedDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/dto/post/PostsPageDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/exception/InternalServerException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/exception/PostNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/exception/StorageException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/model/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/model/Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/model/Tag.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/CommentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/PostRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/TagRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/impl/JdbcBaseRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/impl/JdbcNativeCommentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/impl/JdbcNativePostRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/impl/JdbcNativeTagRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/mappers/CommentRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/mappers/PostRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/repository/mappers/TagRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/service/CommentsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/service/PostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/service/TagService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/service/impl/CommentsServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/service/impl/PostServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/service/impl/TagServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/utils/FileSystemStorageUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/utils/StorageUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/feed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/post.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/configuration/DataSourceConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/configuration/WebConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/controller/CommentControllerIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/controller/PostControllerIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/repository/JdbcNativeCommentRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/repository/JdbcNativePostRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/repository/JdbcNativeTagRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/repository/config/CommentRepositoryConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/repository/config/PostRepositoryConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/repository/config/RepositoryConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/repository/config/TagRepositoryConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/service/CommentsServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/service/PostServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/service/TagServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/service/config/CommentServiceTestConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/service/config/PostServiceTestConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/service/config/TagServiceTestConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test-application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/test-schema.sql" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="blog" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2recSYCoETTxhGLSuwafPiKYmwP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.WebConfiguration.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.All in blog.executor": "Run",
+    "JUnit.CommentControllerIntegrationTest.createComment_shouldCreateComment.executor": "Run",
+    "JUnit.CommentControllerIntegrationTest.deleteComment_shouldDeleteComment.executor": "Run",
+    "JUnit.CommentControllerIntegrationTest.editComment_shouldEditComment.executor": "Run",
+    "JUnit.CommentControllerIntegrationTest.executor": "Run",
+    "JUnit.CommentsServiceTest.delete_shouldDeleteComment.executor": "Run",
+    "JUnit.CommentsServiceTest.executor": "Run",
+    "JUnit.CommentsServiceTest.readCommentsOfPost_shouldReturnComments.executor": "Run",
+    "JUnit.CommentsServiceTest.save_shouldSaveComment.executor": "Run",
+    "JUnit.CommentsServiceTest.update_shouldUpdateComment.executor": "Run",
+    "JUnit.JdbcNativeCommentRepositoryTest.commentsOfPostCount_shouldReturnCommentsOfPost.executor": "Run",
+    "JUnit.JdbcNativeCommentRepositoryTest.deleteById_shouldRemovePostFromDatabase.executor": "Run",
+    "JUnit.JdbcNativeCommentRepositoryTest.executor": "Run",
+    "JUnit.JdbcNativeCommentRepositoryTest.save_shouldAddCommentToDatabase.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.countFindAll_shouldReturnCountOfPosts.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.countFindByTag_shouldReturnCountOfPostsWithTag.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.deleteById_shouldRemovePostFromDatabase.executor": "Debug",
+    "JUnit.JdbcNativePostRepositoryTest.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.findAll_shouldContainCommentsCountInPosts.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.findAll_shouldReturnEmptyList.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.findAll_shouldReturnOnePost.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.findAll_shouldReturnPostsList.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.findAll_shouldReturnThreePosts.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.findAll_shouldReturnThreePostsWithTags.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.findById_shouldReturnPostById.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.findById_shouldReturnPostByIdWithTags.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.save_shouldAddPostToDatabase.executor": "Run",
+    "JUnit.JdbcNativePostRepositoryTest.update_shouldUpdatePostLikesToDatabase.executor": "Run",
+    "JUnit.JdbcNativeTagRepositoryTest.executor": "Run",
+    "JUnit.JdbcNativeTagRepositoryTest.findTagByTitle_shouldReturnTag.executor": "Run",
+    "JUnit.JdbcNativeTagRepositoryTest.save_shouldAddTagToDatabase.executor": "Debug",
+    "JUnit.PostControllerIntegrationTest.addLikeToPost_shouldAddLikeToPost.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.addLikeToPost_shouldNotAddLikeToNotExistingPost.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.createPost_shouldAddNewPost.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.createPost_shouldNotAddNewPostWithoutFile.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.delete_shouldDeletePost.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.editPost_shouldEditPost.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.postsList_shouldReturnEmptyPageIfNoPostsInDb.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.postsList_shouldReturnEmptyPageIfPathWithSlash.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.postsList_shouldReturnHtmlPosts.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.readPostById_shouldReturn404OnUnknownPost.executor": "Run",
+    "JUnit.PostControllerIntegrationTest.readPostById_shouldReturnPost.executor": "Run",
+    "JUnit.PostServiceTest.addLikeToPost_shouldAddLike.executor": "Run",
+    "JUnit.PostServiceTest.deletePost_shouldDeletePost.executor": "Run",
+    "JUnit.PostServiceTest.executor": "Run",
+    "JUnit.PostServiceTest.readPostById_shouldReadPostsById.executor": "Run",
+    "JUnit.PostServiceTest.readPosts_shouldReadPostsWithSearchFilter.executor": "Run",
+    "JUnit.PostServiceTest.readPosts_shouldReadPostsWithoutSearchFilter.executor": "Run",
+    "JUnit.PostServiceTest.save_shouldCreatePost.executor": "Run",
+    "JUnit.PostServiceTest.update_shouldUpdatePost.executor": "Run",
+    "JUnit.TagServiceTest.addTagsToPost_shouldAddExistingTagsToPost.executor": "Run",
+    "JUnit.TagServiceTest.addTagsToPost_shouldAddTagsToPost.executor": "Run",
+    "JUnit.TagServiceTest.executor": "Run",
+    "JUnit.TagServiceTest.unlinkAllTagsFromPost_shouldUnlinkAllTags.executor": "Run",
+    "JUnit.controller in blog.executor": "Run",
+    "JUnit.java in blog.executor": "Run",
+    "JUnit.repository in blog.executor": "Run",
+    "Maven.blog [deploy].executor": "Run",
+    "Maven.blog [org.apache.maven.plugins:maven-deploy-plugin:3.1.2:deploy].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "add-spring-boot",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/laurkankushu/dev/practicum/blog/src/test/java/ru/yandex/practicum/blog/configuration",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/blog/configuration" />
+      <recent name="$PROJECT_DIR$/src/test/resources" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/error" />
+      <recent name="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/blog/configuration" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.yandex.practicum" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.yandex.practicum.blog.repository.config" />
+      <recent name="ru.yandex.practicum.blog.dto.post" />
+      <recent name="ru.yandex.practicum.blog.repository" />
+      <recent name="ru.yandex.practicum.blog.configuration" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.All in blog">
+    <configuration name="All in blog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JdbcNativeCommentRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.practicum.blog.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.blog.repository" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.blog.repository.JdbcNativeCommentRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JdbcNativeCommentRepositoryTest.commentsOfPostCount_shouldReturnCommentsOfPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.practicum.blog.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.blog.repository" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.blog.repository.JdbcNativeCommentRepositoryTest" />
+      <option name="METHOD_NAME" value="commentsOfPostCount_shouldReturnCommentsOfPost" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JdbcNativePostRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.practicum.blog.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.blog.repository" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.blog.repository.JdbcNativePostRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JdbcNativeTagRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.practicum.blog.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.blog.repository" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.blog.repository.JdbcNativeTagRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.JdbcNativeTagRepositoryTest" />
+        <item itemvalue="JUnit.JdbcNativePostRepositoryTest" />
+        <item itemvalue="JUnit.JdbcNativeCommentRepositoryTest.commentsOfPostCount_shouldReturnCommentsOfPost" />
+        <item itemvalue="JUnit.JdbcNativeCommentRepositoryTest" />
+        <item itemvalue="JUnit.All in blog" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a9d9af10-fe76-46fc-a3f2-4f3c7453bef7" name="Changes" comment="" />
+      <created>1736922982020</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736922982020</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="issues_v1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
