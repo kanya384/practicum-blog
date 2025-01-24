@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: "blog"
+  sql:
+    init:
+      mode: "always"
+  datasource:
+    url: "jdbc:h2:file:./db/blog"
+    driverClassName: "org.h2.Driver"
+    username: "sa"
+    password: "password"
