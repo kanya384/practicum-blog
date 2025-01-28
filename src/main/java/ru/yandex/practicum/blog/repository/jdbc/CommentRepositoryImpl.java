@@ -2,12 +2,14 @@ package ru.yandex.practicum.blog.repository.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import ru.yandex.practicum.blog.model.Comment;
 import ru.yandex.practicum.blog.repository.CommentRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class CommentRepositoryImpl extends BaseRepository<Comment> implements CommentRepository {
     public CommentRepositoryImpl(JdbcTemplate jdbc, RowMapper<Comment> mapper) {
         super(jdbc, mapper);

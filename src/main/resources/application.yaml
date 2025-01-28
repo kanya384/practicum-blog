@@ -1,4 +1,7 @@
 spring:
+  web:
+    resources:
+      static-locations: file:/Users/laurkankushu/dev/tmp/storage
   application:
     name: "blog"
   sql:
@@ -9,4 +12,3 @@ spring:
     driverClassName: "org.h2.Driver"
     username: "sa"
     password: "password"
-storage_location: /Users/laurkankushu/dev/tmp/storage

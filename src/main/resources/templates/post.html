@@ -62,7 +62,7 @@
     <div class="post-item">
         <div class="main-content">
             <div class="image-cover">
-                <img th:src="${#strings.contains(post.image,'http')}?${post.image}:@{${'/img/' + post.image}}">
+                <img th:src="${#strings.contains(post.image,'http')}?${post.image}:@{${'/' + post.image}}">
             </div>
             <div class="right-section">
                 <div class="title" th:utext="${post.title}"></div>
