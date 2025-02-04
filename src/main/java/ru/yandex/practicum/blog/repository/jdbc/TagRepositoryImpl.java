@@ -54,4 +54,9 @@ public class TagRepositoryImpl extends BaseRepository<Tag> implements TagReposit
         delete(
                 "delete from post_tags where post_id = ?;", postId);
     }
+
+    @Override
+    public void deleteAll() {
+        delete("delete from tags");
+    }
 }

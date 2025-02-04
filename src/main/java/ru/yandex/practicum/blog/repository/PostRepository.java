@@ -22,4 +22,6 @@ public interface PostRepository {
     Post update(Post post);
 
     void deleteById(Long postId);
+
+    void deleteAll();
 }

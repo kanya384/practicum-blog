@@ -17,4 +17,6 @@ public interface TagRepository {
     void unlinkTagFromPost(Long tagId, Long postId);
 
     void unlinkAllTagsFromPost(Long postId);
+
+    void deleteAll();
 }

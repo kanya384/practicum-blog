@@ -53,4 +53,9 @@ public class CommentRepositoryImpl extends BaseRepository<Comment> implements Co
     public void deleteById(Long commentId) {
         delete("delete from comments where id = ?", commentId);
     }
+
+    @Override
+    public void deleteAll() {
+        delete("delete from comments");
+    }
 }

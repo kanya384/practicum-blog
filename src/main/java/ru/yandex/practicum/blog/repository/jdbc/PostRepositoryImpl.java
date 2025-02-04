@@ -144,6 +144,11 @@ public class PostRepositoryImpl extends BaseRepository<Post> implements PostRepo
         delete("delete from posts where id = ?", postId);
     }
 
+    @Override
+    public void deleteAll() {
+        delete("delete from posts");
+    }
+
     private void findTagsForPosts(List<Post> posts) {
         List<Long> postIds = posts.stream()
                 .map(Post::getId)
